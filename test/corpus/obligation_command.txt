@@ -1,0 +1,175 @@
+==================
+Next Obligation
+==================
+Next Obligation.
+  lia.
+Qed.
+---
+
+(source_file
+  (sentence
+    (obligation_command))
+  (sentence
+    (tactic_invocation
+      (generic_tactic
+        (ident))))
+  (sentence
+    (qed_command)))
+
+==================
+Next Obligation Of
+==================
+Next Obligation of foo.
+---
+
+(source_file
+  (sentence
+    (obligation_command
+      (ident))))
+
+==================
+Next Obligation With Tactic
+==================
+Next Obligation with lia.
+---
+
+(source_file
+  (sentence
+    (obligation_command
+      (tactic_invocation
+        (generic_tactic
+          (ident))))))
+
+==================
+Obligation Number
+==================
+Obligation 2.
+---
+
+(source_file
+  (sentence
+    (obligation_command
+      (decnat))))
+
+==================
+Obligation Number Of
+==================
+Obligation 1 of foo with auto.
+---
+
+(source_file
+  (sentence
+    (obligation_command
+      (decnat)
+      (ident)
+      (tactic_invocation
+        (generic_tactic
+          (ident))))))
+
+==================
+Obligation Tactic
+==================
+Obligation Tactic := intros; auto.
+---
+
+(source_file
+  (sentence
+    (obligation_command
+      (tactic_sequence
+        (tactic_invocation
+          (intros_tactic))
+        (tactic_invocation
+          (generic_tactic
+            (ident)))))))
+
+==================
+Solve Obligations
+==================
+Solve Obligations.
+---
+
+(source_file
+  (sentence
+    (obligation_command)))
+
+==================
+Solve Obligations Of With
+==================
+Solve Obligations of foo with lia.
+---
+
+(source_file
+  (sentence
+    (obligation_command
+      (ident)
+      (tactic_invocation
+        (generic_tactic
+          (ident))))))
+
+==================
+Solve All Obligations
+==================
+Solve All Obligations with auto.
+---
+
+(source_file
+  (sentence
+    (obligation_command
+      (tactic_invocation
+        (generic_tactic
+          (ident))))))
+
+==================
+Obligations Of
+==================
+Obligations of foo.
+---
+
+(source_file
+  (sentence
+    (obligation_command
+      (ident))))
+
+==================
+Preterm
+==================
+Preterm of foo.
+---
+
+(source_file
+  (sentence
+    (obligation_command
+      (ident))))
+
+==================
+Program Definition With Obligation
+==================
+Program Definition f (n : nat) : nat := n.
+Next Obligation. exact 0. Defined.
+---
+
+(source_file
+  (sentence
+    (attributes
+      (legacy_attr))
+    (definition_command
+      (ident_decl
+        (ident))
+      (binder
+        (ident)
+        (type
+          (ident)))
+      (type
+        (ident))
+      (ident)))
+  (sentence
+    (obligation_command))
+  (sentence
+    (tactic_invocation
+      (generic_tactic
+        (ident)
+        (generic_tactic_body
+          (atomic_term_with_bindings
+            (number))))))
+  (sentence
+    (defined_command)))

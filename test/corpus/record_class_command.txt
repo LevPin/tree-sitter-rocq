@@ -1,0 +1,372 @@
+==================
+Record Declaration
+==================
+Record point : Set := mkPoint { px : nat; py : nat }.
+---
+
+(source_file
+  (sentence
+    (record_command
+      (ident)
+      (type
+        (ident))
+      (ident)
+      (record_body
+        (record_field
+          (ident)
+          (of_type
+            (type
+              (ident))))
+        (record_field
+          (ident)
+          (of_type
+            (type
+              (ident))))))))
+
+==================
+Record Declaration Without Constructor
+==================
+Record point (A : Type) := { px : A; py : A; }.
+---
+
+(source_file
+  (sentence
+    (record_command
+      (ident)
+      (binder
+        (ident)
+        (type
+          (ident)))
+      (record_body
+        (record_field
+          (ident)
+          (of_type
+            (type
+              (ident))))
+        (record_field
+          (ident)
+          (of_type
+            (type
+              (ident))))))))
+
+==================
+Structure With Coercion Field And Default
+==================
+Structure cfg : Type := { size :> nat; name : string := "x" }.
+---
+
+(source_file
+  (sentence
+    (record_command
+      (ident)
+      (type
+        (ident))
+      (record_body
+        (record_field
+          (ident)
+          (of_type
+            (type
+              (ident))))
+        (record_field
+          (ident)
+          (of_type
+            (type
+              (ident)))
+          (string))))))
+
+==================
+Record Field With Binders
+==================
+Record ops := { plus_op (x y : nat) : nat := x + y }.
+---
+
+(source_file
+  (sentence
+    (record_command
+      (ident)
+      (record_body
+        (record_field
+          (ident)
+          (binder
+            (ident)
+            (ident)
+            (type
+              (ident)))
+          (of_type
+            (type
+              (ident)))
+          (additive_operation
+            (ident)
+            (ident)))))))
+
+==================
+Class Record Body
+==================
+Class Show A : Type := { show : A -> string }.
+---
+
+(source_file
+  (sentence
+    (class_command
+      (ident)
+      (binder
+        (ident))
+      (type
+        (ident))
+      (record_body
+        (record_field
+          (ident)
+          (of_type
+            (type
+              (arrow_term
+                (ident)
+                (ident)))))))))
+
+==================
+Class With Binders And Trailing Semicolon
+==================
+Class Eq (A : Type) := {
+  eqb: A -> A -> bool;
+}.
+---
+
+(source_file
+  (sentence
+    (class_command
+      (ident)
+      (binder
+        (ident)
+        (type
+          (ident)))
+      (record_body
+        (record_field
+          (ident)
+          (of_type
+            (type
+              (arrow_term
+                (ident)
+                (arrow_term
+                  (ident)
+                  (ident))))))))))
+
+==================
+Class With Implicit Binder And Sort
+==================
+Class Ord (A : Type) {H : Eq A} : Type := {
+  le : A -> A -> bool
+}.
+---
+
+(source_file
+  (sentence
+    (class_command
+      (ident)
+      (binder
+        (ident)
+        (type
+          (ident)))
+      (binder
+        (implicit_binders
+          (ident)
+          (type
+            (application
+              (ident)
+              (ident)))))
+      (type
+        (ident))
+      (record_body
+        (record_field
+          (ident)
+          (of_type
+            (type
+              (arrow_term
+                (ident)
+                (arrow_term
+                  (ident)
+                  (ident))))))))))
+
+==================
+Class Fields With Quantified Types
+==================
+Class Monad (M : Type -> Type) := {
+  ret  : forall {A : Type}, A -> M A ;
+  bind : forall {A B : Type}, M A -> (A -> M B) -> M B
+}.
+---
+
+(source_file
+  (sentence
+    (class_command
+      (ident)
+      (binder
+        (ident)
+        (type
+          (arrow_term
+            (ident)
+            (ident))))
+      (record_body
+        (record_field
+          (ident)
+          (of_type
+            (type
+              (quantifier_term
+                (open_binders
+                  (binder
+                    (implicit_binders
+                      (ident)
+                      (type
+                        (ident)))))
+                (type
+                  (arrow_term
+                    (ident)
+                    (application
+                      (ident)
+                      (ident))))))))
+        (record_field
+          (ident)
+          (of_type
+            (type
+              (quantifier_term
+                (open_binders
+                  (binder
+                    (implicit_binders
+                      (ident)
+                      (ident)
+                      (type
+                        (ident)))))
+                (type
+                  (arrow_term
+                    (application
+                      (ident)
+                      (ident))
+                    (arrow_term
+                      (parenthesized_term
+                        (arrow_term
+                          (ident)
+                          (application
+                            (ident)
+                            (ident))))
+                      (application
+                        (ident)
+                        (ident)))))))))))))
+
+==================
+Class Definitional Form
+==================
+Class Inhabited (A : Type) := inhabitant : A.
+---
+
+(source_file
+  (sentence
+    (class_command
+      (ident)
+      (binder
+        (ident)
+        (type
+          (ident)))
+      (ident)
+      (of_type
+        (type
+          (ident))))))
+
+==================
+Class With Constructor Name
+==================
+Class Foo A := mkFoo { foo : A }.
+---
+
+(source_file
+  (sentence
+    (class_command
+      (ident)
+      (binder
+        (ident))
+      (ident)
+      (record_body
+        (record_field
+          (ident)
+          (of_type
+            (type
+              (ident))))))))
+
+==================
+Class With Generalizing Binder
+==================
+Class Applicative (F : Type -> Type) `{Functor F} := {
+  pure : forall {A : Type}, A -> F A
+}.
+---
+
+(source_file
+  (sentence
+    (class_command
+      (ident)
+      (binder
+        (ident)
+        (type
+          (arrow_term
+            (ident)
+            (ident))))
+      (binder
+        (generalizing_binder
+          (typeclass_constraint
+            (type
+              (application
+                (ident)
+                (ident))))))
+      (record_body
+        (record_field
+          (ident)
+          (of_type
+            (type
+              (quantifier_term
+                (open_binders
+                  (binder
+                    (implicit_binders
+                      (ident)
+                      (type
+                        (ident)))))
+                (type
+                  (arrow_term
+                    (ident)
+                    (application
+                      (ident)
+                      (ident))))))))))))
+
+==================
+Class Empty Body
+==================
+Class Trivial := { }.
+---
+
+(source_file
+  (sentence
+    (class_command
+      (ident)
+      (record_body))))
+
+==================
+Local Class With Attribute
+==================
+#[global] Class Eq A := { eqb : A -> A -> bool }.
+---
+
+(source_file
+  (sentence
+    (attributes
+      (attribute
+        (ident)))
+    (class_command
+      (ident)
+      (binder
+        (ident))
+      (record_body
+        (record_field
+          (ident)
+          (of_type
+            (type
+              (arrow_term
+                (ident)
+                (arrow_term
+                  (ident)
+                  (ident))))))))))

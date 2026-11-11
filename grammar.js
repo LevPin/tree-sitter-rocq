@@ -20,7 +20,7 @@ export default grammar({
   conflicts: $ => [
     [$.generic_tactic_body],
     [$.match_pattern, $.list_literal],
-    [$.binder],
+    [$._bracketed_binder],
 
     [$.fixannot, $._qualid],
     [$.assert_tactic, $._qualid],
@@ -161,6 +161,10 @@ export default grammar({
         $.definition_command,
         $.fixpoint_command,
         $.inductive_command,
+        $.record_command,
+        $.class_command,
+        $.instance_command,
+        $.existing_instance_command,
         $.assumption_command,
         $.arguments_command,
         $.section_command,
@@ -168,8 +172,10 @@ export default grammar({
         $.end_command,
         $.reserved_notation_command,
         $.notation_command,
+        $.infix_command,
 
         $.proof_command,
+        $.obligation_command,
         $.qed_command,
         $.save_command,
         $.defined_command,
@@ -461,6 +467,89 @@ export default grammar({
         repeat(seq(",", $.attribute)),
         "]"),
 
+    record_command: $ => seq(
+      choice("Record", "Structure"),
+      field("name", $.ident),
+      repeat($.binder),
+      optional(seq(":", $.type)),
+      ":=",
+      optional(field("constructor", $.ident)),
+      $.record_body
+    ),
+
+    class_command: $ => seq(
+      "Class",
+      field("name", $.ident),
+      repeat($.binder),
+      optional(seq(":", $.type)),
+      ":=",
+      choice(
+        seq(optional(field("constructor", $.ident)), $.record_body),
+        seq(field("constructor", $.ident), $.of_type)
+      )
+    ),
+
+    record_body: $ => seq(
+      "{",
+      optional($._record_fields),
+      "}"
+    ),
+
+    _record_fields: $ => seq(
+      $.record_field,
+      repeat(seq(";", $.record_field)),
+      optional(";")
+    ),
+
+    record_field: $ => seq(
+      field("name", $._qualid),
+      repeat($.binder),
+      choice(
+        seq($.of_type, optional(seq(":=", field("body", $._term)))),
+        seq(":=", field("body", $._term))
+      )
+    ),
+
+    // Wins over `custom_notation_block` on the empty `{| |}`
+    record_term: $ => prec(1, seq(
+      "{|",
+      optional(seq(
+        $._record_term_field,
+        repeat(seq(";", $._record_term_field)),
+        optional(";")
+      )),
+      "|}"
+    )),
+
+    // No binders here: after the name, `[`, `(` and `{` would clash with `custom_notation_block`
+    _record_term_field: $ => alias($._record_term_def, $.record_field),
+
+    _record_term_def: $ => seq(
+      field("name", $._qualid), ":=", field("body", $._term)
+    ),
+
+    instance_command: $ => seq(
+      "Instance",
+      optional(choice(
+        seq($.ident_decl, repeat($.binder)),
+        seq($._bracketed_binder, repeat($.binder))
+      )),
+      ":",
+      $.type,
+      optional(seq("|", optional($._natural))),
+      optional(seq(":=", field("body", choice($.record_body, $._term))))
+    ),
+
+    existing_instance_command: $ => choice(
+      seq(
+        "Existing",
+        choice("Instance", "Instances"),
+        repeat1(field("name", $._qualid)),
+        optional(seq("|", $._natural))
+      ),
+      seq("Existing", "Class", field("name", $._qualid))
+    ),
+
     assumption_command: $ => seq(
       choice(
         "Axiom", "Axioms",
@@ -531,6 +620,11 @@ export default grammar({
 
     notation_command: $ => seq(
       "Notation",
+      $.notation_declaration
+    ),
+
+    infix_command: $ => seq(
+      "Infix",
       $.notation_declaration
     ),
 
@@ -654,6 +748,32 @@ export default grammar({
       )
     ),
 
+    obligation_command: $ => choice(
+      seq(
+        "Next", "Obligation",
+        optional($._obligation_of),
+        optional($._obligation_with)
+      ),
+      seq(
+        "Obligation", $._natural,
+        optional($._obligation_of),
+        optional($._obligation_with)
+      ),
+      seq("Obligation", "Tactic", ":=", $._ltac_expr),
+      seq(
+        "Solve", "Obligations",
+        optional($._obligation_of),
+        optional($._obligation_with)
+      ),
+      seq("Solve", "All", "Obligations", optional($._obligation_with)),
+      seq("Obligations", optional($._obligation_of)),
+      seq("Preterm", optional($._obligation_of))
+    ),
+
+    _obligation_of: $ => seq("of", field("name", $.ident)),
+
+    _obligation_with: $ => seq("with", field("tactic", $._ltac_expr)),
+
     section_var_expr: $ => choice(
       seq($.expr_leaf, repeat1($.expr_leaf)),
 
@@ -758,6 +878,7 @@ export default grammar({
 
         // Custom
         $.list_literal,
+        $.record_term,
         $.recursive_notation_term,
         $.custom_notation_block,
       ),
@@ -1111,9 +1232,14 @@ export default grammar({
 
     binder: $ => choice(
       $._name,
+      $._bracketed_binder
+    ),
+
+    _bracketed_binder: $ => choice(
       seq("(", repeat($._name), ":", $.type, ")"),
       seq("(", $._name, optional(seq(":", $.type)), ":=", $._term, ")"),
       $.implicit_binders,
+      $.generalizing_binder,
       seq("(", $._name, ":", $.type, "|", $._term, ")"),
       seq($.destructuring_pattern),
     ),
@@ -1122,6 +1248,22 @@ export default grammar({
       seq("{", repeat1($._name), optional(seq(":", $.type)), "}"),
       seq("[", repeat1($._name), optional(seq(":", $.type)), "]")
     ),
+
+    generalizing_binder: $ => seq(
+      "`",
+      choice(
+        seq("(", $._typeclass_constraints, ")"),
+        seq("{", $._typeclass_constraints, "}"),
+        seq("[", $._typeclass_constraints, "]")
+      )
+    ),
+
+    _typeclass_constraints: $ => seq(
+      $.typeclass_constraint,
+      repeat(seq(",", $.typeclass_constraint))
+    ),
+
+    typeclass_constraint: $ => seq(optional("!"), $.type),
 
     open_binders: $ => seq(
       repeat1($.binder),

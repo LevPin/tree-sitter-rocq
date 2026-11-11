@@ -1,0 +1,90 @@
+==================
+Record Term
+==================
+Definition p := {| fst := 1 ; snd := 2 |}.
+---
+
+(source_file
+  (sentence
+    (definition_command
+      (ident_decl
+        (ident))
+      (record_term
+        (record_field
+          (ident)
+          (number))
+        (record_field
+          (ident)
+          (number))))))
+
+==================
+Record Term Trailing Semicolon
+==================
+Definition p := {| fst := 1 ; snd := 2 ; |}.
+---
+
+(source_file
+  (sentence
+    (definition_command
+      (ident_decl
+        (ident))
+      (record_term
+        (record_field
+          (ident)
+          (number))
+        (record_field
+          (ident)
+          (number))))))
+
+==================
+Record Term Empty
+==================
+Definition p := {| |}.
+---
+
+(source_file
+  (sentence
+    (definition_command
+      (ident_decl
+        (ident))
+      (record_term))))
+
+==================
+Record Term Qualified Field As Argument
+==================
+Check mk {| M.a := f x |} 3.
+---
+
+(source_file
+  (sentence
+    (evaluation_command
+      (application
+        (application
+          (ident)
+          (record_term
+            (record_field
+              (dotted_qualid)
+              (application
+                (ident)
+                (ident)))))
+        (number)))))
+
+==================
+Instance Body As Record Term
+==================
+Instance i : C nat := {| m := 1 |}.
+---
+
+(source_file
+  (sentence
+    (instance_command
+      (ident_decl
+        (ident))
+      (type
+        (application
+          (ident)
+          (ident)))
+      (record_term
+        (record_field
+          (ident)
+          (number))))))

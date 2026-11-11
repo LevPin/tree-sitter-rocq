@@ -144,6 +144,10 @@
           "named": true
         },
         {
+          "type": "record_term",
+          "named": true
+        },
+        {
           "type": "recursive_notation_term",
           "named": true
         },
@@ -272,6 +276,10 @@
         },
         {
           "type": "quantifier_term",
+          "named": true
+        },
+        {
+          "type": "record_term",
           "named": true
         },
         {
@@ -411,6 +419,10 @@
         },
         {
           "type": "quantifier_term",
+          "named": true
+        },
+        {
+          "type": "record_term",
           "named": true
         },
         {
@@ -576,6 +588,10 @@
             "named": true
           },
           {
+            "type": "record_term",
+            "named": true
+          },
+          {
             "type": "recursive_notation_term",
             "named": true
           },
@@ -707,6 +723,10 @@
           },
           {
             "type": "quantifier_term",
+            "named": true
+          },
+          {
+            "type": "record_term",
             "named": true
           },
           {
@@ -865,6 +885,10 @@
           "named": true
         },
         {
+          "type": "record_term",
+          "named": true
+        },
+        {
           "type": "recursive_notation_term",
           "named": true
         },
@@ -1013,6 +1037,10 @@
           "named": true
         },
         {
+          "type": "record_term",
+          "named": true
+        },
+        {
           "type": "recursive_notation_term",
           "named": true
         },
@@ -1145,6 +1173,10 @@
           "named": true
         },
         {
+          "type": "generalizing_binder",
+          "named": true
+        },
+        {
           "type": "ident",
           "named": true
         },
@@ -1210,6 +1242,10 @@
         },
         {
           "type": "quantifier_term",
+          "named": true
+        },
+        {
+          "type": "record_term",
           "named": true
         },
         {
@@ -1383,6 +1419,10 @@
             "named": true
           },
           {
+            "type": "record_term",
+            "named": true
+          },
+          {
             "type": "recursive_notation_term",
             "named": true
           },
@@ -1435,6 +1475,10 @@
         },
         {
           "type": "parenthesized_term",
+          "named": true
+        },
+        {
+          "type": "record_term",
           "named": true
         },
         {
@@ -1623,6 +1667,10 @@
           "named": true
         },
         {
+          "type": "record_term",
+          "named": true
+        },
+        {
           "type": "recursive_notation_term",
           "named": true
         },
@@ -1644,6 +1692,54 @@
         },
         {
           "type": "term_in_pattern",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "class_command",
+    "named": true,
+    "fields": {
+      "constructor": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "ident",
+            "named": true
+          }
+        ]
+      },
+      "name": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "ident",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "binder",
+          "named": true
+        },
+        {
+          "type": "of_type",
+          "named": true
+        },
+        {
+          "type": "record_body",
+          "named": true
+        },
+        {
+          "type": "type",
           "named": true
         }
       ]
@@ -1825,6 +1921,10 @@
           "named": true
         },
         {
+          "type": "record_term",
+          "named": true
+        },
+        {
           "type": "recursive_notation_term",
           "named": true
         },
@@ -1953,6 +2053,10 @@
         },
         {
           "type": "quantifier_term",
+          "named": true
+        },
+        {
+          "type": "record_term",
           "named": true
         },
         {
@@ -2228,6 +2332,10 @@
           "named": true
         },
         {
+          "type": "record_term",
+          "named": true
+        },
+        {
           "type": "recursive_notation_term",
           "named": true
         },
@@ -2413,6 +2521,10 @@
             "named": true
           },
           {
+            "type": "record_term",
+            "named": true
+          },
+          {
             "type": "recursive_notation_term",
             "named": true
           },
@@ -2576,6 +2688,10 @@
         },
         {
           "type": "quantifier_term",
+          "named": true
+        },
+        {
+          "type": "record_term",
           "named": true
         },
         {
@@ -2744,6 +2860,10 @@
           "named": true
         },
         {
+          "type": "record_term",
+          "named": true
+        },
+        {
           "type": "recursive_notation_term",
           "named": true
         },
@@ -2757,6 +2877,40 @@
         },
         {
           "type": "term_cast",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "existing_instance_command",
+    "named": true,
+    "fields": {
+      "name": {
+        "multiple": true,
+        "required": true,
+        "types": [
+          {
+            "type": "dotted_qualid",
+            "named": true
+          },
+          {
+            "type": "ident",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "decnat",
+          "named": true
+        },
+        {
+          "type": "hexnat",
           "named": true
         }
       ]
@@ -3100,6 +3254,10 @@
             "named": true
           },
           {
+            "type": "record_term",
+            "named": true
+          },
+          {
             "type": "recursive_notation_term",
             "named": true
           },
@@ -3204,6 +3362,10 @@
         },
         {
           "type": "parenthesized_term",
+          "named": true
+        },
+        {
+          "type": "record_term",
           "named": true
         },
         {
@@ -3342,6 +3504,10 @@
             "named": true
           },
           {
+            "type": "record_term",
+            "named": true
+          },
+          {
             "type": "recursive_notation_term",
             "named": true
           },
@@ -3397,6 +3563,21 @@
       "types": [
         {
           "type": "string",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "generalizing_binder",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "typeclass_constraint",
           "named": true
         }
       ]
@@ -3656,6 +3837,10 @@
             "named": true
           },
           {
+            "type": "record_term",
+            "named": true
+          },
+          {
             "type": "recursive_notation_term",
             "named": true
           },
@@ -3837,6 +4022,10 @@
             "named": true
           },
           {
+            "type": "record_term",
+            "named": true
+          },
+          {
             "type": "recursive_notation_term",
             "named": true
           },
@@ -3971,6 +4160,10 @@
             "named": true
           },
           {
+            "type": "record_term",
+            "named": true
+          },
+          {
             "type": "recursive_notation_term",
             "named": true
           },
@@ -4102,6 +4295,10 @@
           },
           {
             "type": "quantifier_term",
+            "named": true
+          },
+          {
+            "type": "record_term",
             "named": true
           },
           {
@@ -4259,6 +4456,10 @@
             "named": true
           },
           {
+            "type": "record_term",
+            "named": true
+          },
+          {
             "type": "recursive_notation_term",
             "named": true
           },
@@ -4390,6 +4591,10 @@
           },
           {
             "type": "quantifier_term",
+            "named": true
+          },
+          {
+            "type": "record_term",
             "named": true
           },
           {
@@ -4586,6 +4791,21 @@
     }
   },
   {
+    "type": "infix_command",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "notation_declaration",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "infix_pattern",
     "named": true,
     "fields": {},
@@ -4714,6 +4934,10 @@
           "named": true
         },
         {
+          "type": "record_term",
+          "named": true
+        },
+        {
           "type": "recursive_notation_term",
           "named": true
         },
@@ -4727,6 +4951,320 @@
         },
         {
           "type": "term_cast",
+          "named": true
+        },
+        {
+          "type": "wildcard",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "instance_command",
+    "named": true,
+    "fields": {
+      "body": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "'",
+            "named": false
+          },
+          {
+            "type": "@",
+            "named": false
+          },
+          {
+            "type": "additive_operation",
+            "named": true
+          },
+          {
+            "type": "app_operation",
+            "named": true
+          },
+          {
+            "type": "application",
+            "named": true
+          },
+          {
+            "type": "arrow_term",
+            "named": true
+          },
+          {
+            "type": "comparison_operation",
+            "named": true
+          },
+          {
+            "type": "cons_operation",
+            "named": true
+          },
+          {
+            "type": "custom_notation_block",
+            "named": true
+          },
+          {
+            "type": "custom_operation",
+            "named": true
+          },
+          {
+            "type": "dotted_qualid",
+            "named": true
+          },
+          {
+            "type": "fix_expression",
+            "named": true
+          },
+          {
+            "type": "ident",
+            "named": true
+          },
+          {
+            "type": "if_expression",
+            "named": true
+          },
+          {
+            "type": "imp_evaluation_operation",
+            "named": true
+          },
+          {
+            "type": "lambda_function",
+            "named": true
+          },
+          {
+            "type": "let_expression",
+            "named": true
+          },
+          {
+            "type": "list_literal",
+            "named": true
+          },
+          {
+            "type": "logical_conjunction",
+            "named": true
+          },
+          {
+            "type": "logical_disjunction",
+            "named": true
+          },
+          {
+            "type": "logical_equivalence",
+            "named": true
+          },
+          {
+            "type": "match_expression",
+            "named": true
+          },
+          {
+            "type": "metavariable",
+            "named": true
+          },
+          {
+            "type": "multiplicative_operation",
+            "named": true
+          },
+          {
+            "type": "negation_operation",
+            "named": true
+          },
+          {
+            "type": "number",
+            "named": true
+          },
+          {
+            "type": "parenthesized_term",
+            "named": true
+          },
+          {
+            "type": "quantifier_term",
+            "named": true
+          },
+          {
+            "type": "record_body",
+            "named": true
+          },
+          {
+            "type": "record_term",
+            "named": true
+          },
+          {
+            "type": "recursive_notation_term",
+            "named": true
+          },
+          {
+            "type": "scoped_term",
+            "named": true
+          },
+          {
+            "type": "string",
+            "named": true
+          },
+          {
+            "type": "term_cast",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "additive_operation",
+          "named": true
+        },
+        {
+          "type": "app_operation",
+          "named": true
+        },
+        {
+          "type": "application",
+          "named": true
+        },
+        {
+          "type": "arrow_term",
+          "named": true
+        },
+        {
+          "type": "binder",
+          "named": true
+        },
+        {
+          "type": "comparison_operation",
+          "named": true
+        },
+        {
+          "type": "cons_operation",
+          "named": true
+        },
+        {
+          "type": "custom_notation_block",
+          "named": true
+        },
+        {
+          "type": "custom_operation",
+          "named": true
+        },
+        {
+          "type": "decnat",
+          "named": true
+        },
+        {
+          "type": "destructuring_pattern",
+          "named": true
+        },
+        {
+          "type": "dotted_qualid",
+          "named": true
+        },
+        {
+          "type": "fix_expression",
+          "named": true
+        },
+        {
+          "type": "generalizing_binder",
+          "named": true
+        },
+        {
+          "type": "hexnat",
+          "named": true
+        },
+        {
+          "type": "ident",
+          "named": true
+        },
+        {
+          "type": "ident_decl",
+          "named": true
+        },
+        {
+          "type": "if_expression",
+          "named": true
+        },
+        {
+          "type": "imp_evaluation_operation",
+          "named": true
+        },
+        {
+          "type": "implicit_binders",
+          "named": true
+        },
+        {
+          "type": "lambda_function",
+          "named": true
+        },
+        {
+          "type": "let_expression",
+          "named": true
+        },
+        {
+          "type": "list_literal",
+          "named": true
+        },
+        {
+          "type": "logical_conjunction",
+          "named": true
+        },
+        {
+          "type": "logical_disjunction",
+          "named": true
+        },
+        {
+          "type": "logical_equivalence",
+          "named": true
+        },
+        {
+          "type": "match_expression",
+          "named": true
+        },
+        {
+          "type": "metavariable",
+          "named": true
+        },
+        {
+          "type": "multiplicative_operation",
+          "named": true
+        },
+        {
+          "type": "negation_operation",
+          "named": true
+        },
+        {
+          "type": "number",
+          "named": true
+        },
+        {
+          "type": "parenthesized_term",
+          "named": true
+        },
+        {
+          "type": "quantifier_term",
+          "named": true
+        },
+        {
+          "type": "record_term",
+          "named": true
+        },
+        {
+          "type": "recursive_notation_term",
+          "named": true
+        },
+        {
+          "type": "scoped_term",
+          "named": true
+        },
+        {
+          "type": "string",
+          "named": true
+        },
+        {
+          "type": "term_cast",
+          "named": true
+        },
+        {
+          "type": "type",
           "named": true
         },
         {
@@ -4910,6 +5448,10 @@
           "named": true
         },
         {
+          "type": "record_term",
+          "named": true
+        },
+        {
           "type": "recursive_notation_term",
           "named": true
         },
@@ -5056,6 +5598,10 @@
           },
           {
             "type": "quantifier_term",
+            "named": true
+          },
+          {
+            "type": "record_term",
             "named": true
           },
           {
@@ -5222,6 +5768,10 @@
           },
           {
             "type": "quantifier_term",
+            "named": true
+          },
+          {
+            "type": "record_term",
             "named": true
           },
           {
@@ -5440,6 +5990,10 @@
           "named": true
         },
         {
+          "type": "record_term",
+          "named": true
+        },
+        {
           "type": "recursive_notation_term",
           "named": true
         },
@@ -5587,6 +6141,10 @@
           "named": true
         },
         {
+          "type": "record_term",
+          "named": true
+        },
+        {
           "type": "recursive_notation_term",
           "named": true
         },
@@ -5722,6 +6280,10 @@
           "named": true
         },
         {
+          "type": "record_term",
+          "named": true
+        },
+        {
           "type": "recursive_notation_term",
           "named": true
         },
@@ -5853,6 +6415,10 @@
           "named": true
         },
         {
+          "type": "record_term",
+          "named": true
+        },
+        {
           "type": "recursive_notation_term",
           "named": true
         },
@@ -5981,6 +6547,10 @@
         },
         {
           "type": "quantifier_term",
+          "named": true
+        },
+        {
+          "type": "record_term",
           "named": true
         },
         {
@@ -6176,6 +6746,10 @@
           },
           {
             "type": "quantifier_term",
+            "named": true
+          },
+          {
+            "type": "record_term",
             "named": true
           },
           {
@@ -6425,6 +6999,10 @@
           "named": true
         },
         {
+          "type": "record_term",
+          "named": true
+        },
+        {
           "type": "recursive_notation_term",
           "named": true
         },
@@ -6571,6 +7149,10 @@
           "named": true
         },
         {
+          "type": "record_term",
+          "named": true
+        },
+        {
           "type": "recursive_notation_term",
           "named": true
         },
@@ -6707,6 +7289,10 @@
           "named": true
         },
         {
+          "type": "record_term",
+          "named": true
+        },
+        {
           "type": "recursive_notation_term",
           "named": true
         },
@@ -6789,6 +7375,10 @@
             "named": true
           },
           {
+            "type": "record_term",
+            "named": true
+          },
+          {
             "type": "recursive_notation_term",
             "named": true
           },
@@ -6842,6 +7432,90 @@
           }
         ]
       }
+    }
+  },
+  {
+    "type": "obligation_command",
+    "named": true,
+    "fields": {
+      "name": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "ident",
+            "named": true
+          }
+        ]
+      },
+      "tactic": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "match_goal",
+            "named": true
+          },
+          {
+            "type": "parenthesized_tactic",
+            "named": true
+          },
+          {
+            "type": "tactic_branch",
+            "named": true
+          },
+          {
+            "type": "tactic_invocation",
+            "named": true
+          },
+          {
+            "type": "tactic_or",
+            "named": true
+          },
+          {
+            "type": "tactic_sequence",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "decnat",
+          "named": true
+        },
+        {
+          "type": "hexnat",
+          "named": true
+        },
+        {
+          "type": "match_goal",
+          "named": true
+        },
+        {
+          "type": "parenthesized_tactic",
+          "named": true
+        },
+        {
+          "type": "tactic_branch",
+          "named": true
+        },
+        {
+          "type": "tactic_invocation",
+          "named": true
+        },
+        {
+          "type": "tactic_or",
+          "named": true
+        },
+        {
+          "type": "tactic_sequence",
+          "named": true
+        }
+      ]
     }
   },
   {
@@ -7061,6 +7735,10 @@
           "named": true
         },
         {
+          "type": "record_term",
+          "named": true
+        },
+        {
           "type": "recursive_notation_term",
           "named": true
         },
@@ -7231,6 +7909,10 @@
           "named": true
         },
         {
+          "type": "record_term",
+          "named": true
+        },
+        {
           "type": "recursive_notation_term",
           "named": true
         },
@@ -7380,6 +8062,10 @@
         },
         {
           "type": "quantifier_term",
+          "named": true
+        },
+        {
+          "type": "record_term",
           "named": true
         },
         {
@@ -7559,6 +8245,10 @@
           },
           {
             "type": "quantifier_term",
+            "named": true
+          },
+          {
+            "type": "record_term",
             "named": true
           },
           {
@@ -7751,6 +8441,252 @@
     }
   },
   {
+    "type": "record_body",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "record_field",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "record_command",
+    "named": true,
+    "fields": {
+      "constructor": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "ident",
+            "named": true
+          }
+        ]
+      },
+      "name": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "ident",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "binder",
+          "named": true
+        },
+        {
+          "type": "record_body",
+          "named": true
+        },
+        {
+          "type": "type",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "record_field",
+    "named": true,
+    "fields": {
+      "body": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "'",
+            "named": false
+          },
+          {
+            "type": "@",
+            "named": false
+          },
+          {
+            "type": "additive_operation",
+            "named": true
+          },
+          {
+            "type": "app_operation",
+            "named": true
+          },
+          {
+            "type": "application",
+            "named": true
+          },
+          {
+            "type": "arrow_term",
+            "named": true
+          },
+          {
+            "type": "comparison_operation",
+            "named": true
+          },
+          {
+            "type": "cons_operation",
+            "named": true
+          },
+          {
+            "type": "custom_notation_block",
+            "named": true
+          },
+          {
+            "type": "custom_operation",
+            "named": true
+          },
+          {
+            "type": "dotted_qualid",
+            "named": true
+          },
+          {
+            "type": "fix_expression",
+            "named": true
+          },
+          {
+            "type": "ident",
+            "named": true
+          },
+          {
+            "type": "if_expression",
+            "named": true
+          },
+          {
+            "type": "imp_evaluation_operation",
+            "named": true
+          },
+          {
+            "type": "lambda_function",
+            "named": true
+          },
+          {
+            "type": "let_expression",
+            "named": true
+          },
+          {
+            "type": "list_literal",
+            "named": true
+          },
+          {
+            "type": "logical_conjunction",
+            "named": true
+          },
+          {
+            "type": "logical_disjunction",
+            "named": true
+          },
+          {
+            "type": "logical_equivalence",
+            "named": true
+          },
+          {
+            "type": "match_expression",
+            "named": true
+          },
+          {
+            "type": "metavariable",
+            "named": true
+          },
+          {
+            "type": "multiplicative_operation",
+            "named": true
+          },
+          {
+            "type": "negation_operation",
+            "named": true
+          },
+          {
+            "type": "number",
+            "named": true
+          },
+          {
+            "type": "parenthesized_term",
+            "named": true
+          },
+          {
+            "type": "quantifier_term",
+            "named": true
+          },
+          {
+            "type": "record_term",
+            "named": true
+          },
+          {
+            "type": "recursive_notation_term",
+            "named": true
+          },
+          {
+            "type": "scoped_term",
+            "named": true
+          },
+          {
+            "type": "string",
+            "named": true
+          },
+          {
+            "type": "term_cast",
+            "named": true
+          }
+        ]
+      },
+      "name": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "dotted_qualid",
+            "named": true
+          },
+          {
+            "type": "ident",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "binder",
+          "named": true
+        },
+        {
+          "type": "of_type",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "record_term",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "record_field",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "recursive_notation_term",
     "named": true,
     "fields": {},
@@ -7792,6 +8728,10 @@
         },
         {
           "type": "parenthesized_term",
+          "named": true
+        },
+        {
+          "type": "record_term",
           "named": true
         },
         {
@@ -7994,6 +8934,10 @@
           "named": true
         },
         {
+          "type": "record_term",
+          "named": true
+        },
+        {
           "type": "recursive_notation_term",
           "named": true
         },
@@ -8094,6 +9038,10 @@
           "named": true
         },
         {
+          "type": "class_command",
+          "named": true
+        },
+        {
           "type": "close_scope_command",
           "named": true
         },
@@ -8130,6 +9078,10 @@
           "named": true
         },
         {
+          "type": "existing_instance_command",
+          "named": true
+        },
+        {
           "type": "export_command",
           "named": true
         },
@@ -8162,6 +9114,14 @@
           "named": true
         },
         {
+          "type": "infix_command",
+          "named": true
+        },
+        {
+          "type": "instance_command",
+          "named": true
+        },
+        {
           "type": "ltac_definition",
           "named": true
         },
@@ -8175,6 +9135,10 @@
         },
         {
           "type": "notation_command",
+          "named": true
+        },
+        {
+          "type": "obligation_command",
           "named": true
         },
         {
@@ -8195,6 +9159,10 @@
         },
         {
           "type": "qed_command",
+          "named": true
+        },
+        {
+          "type": "record_command",
           "named": true
         },
         {
@@ -8721,6 +9689,10 @@
           "named": true
         },
         {
+          "type": "record_term",
+          "named": true
+        },
+        {
           "type": "recursive_notation_term",
           "named": true
         },
@@ -8896,6 +9868,10 @@
             "named": true
           },
           {
+            "type": "record_term",
+            "named": true
+          },
+          {
             "type": "recursive_notation_term",
             "named": true
           },
@@ -9049,6 +10025,10 @@
           },
           {
             "type": "quantifier_term",
+            "named": true
+          },
+          {
+            "type": "record_term",
             "named": true
           },
           {
@@ -9234,6 +10214,10 @@
           "named": true
         },
         {
+          "type": "record_term",
+          "named": true
+        },
+        {
           "type": "recursive_notation_term",
           "named": true
         },
@@ -9247,6 +10231,21 @@
         },
         {
           "type": "term_cast",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "typeclass_constraint",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "type",
           "named": true
         }
       ]
@@ -9305,6 +10304,10 @@
         },
         {
           "type": "parenthesized_term",
+          "named": true
+        },
+        {
+          "type": "record_term",
           "named": true
         },
         {
@@ -9568,6 +10571,10 @@
     "named": false
   },
   {
+    "type": "Class",
+    "named": false
+  },
+  {
     "type": "Close",
     "named": false
   },
@@ -9649,6 +10656,10 @@
   },
   {
     "type": "Example",
+    "named": false
+  },
+  {
+    "type": "Existing",
     "named": false
   },
   {
@@ -9740,11 +10751,23 @@
     "named": false
   },
   {
+    "type": "Infix",
+    "named": false
+  },
+  {
     "type": "Inline",
     "named": false
   },
   {
     "type": "Inlined",
+    "named": false
+  },
+  {
+    "type": "Instance",
+    "named": false
+  },
+  {
+    "type": "Instances",
     "named": false
   },
   {
@@ -9788,6 +10811,10 @@
     "named": false
   },
   {
+    "type": "Next",
+    "named": false
+  },
+  {
     "type": "NoInline",
     "named": false
   },
@@ -9801,6 +10828,14 @@
   },
   {
     "type": "OCaml",
+    "named": false
+  },
+  {
+    "type": "Obligation",
+    "named": false
+  },
+  {
+    "type": "Obligations",
     "named": false
   },
   {
@@ -9832,6 +10867,10 @@
     "named": false
   },
   {
+    "type": "Preterm",
+    "named": false
+  },
+  {
     "type": "Print",
     "named": false
   },
@@ -9853,6 +10892,10 @@
   },
   {
     "type": "Proposition",
+    "named": false
+  },
+  {
+    "type": "Record",
     "named": false
   },
   {
@@ -9920,7 +10963,19 @@
     "named": false
   },
   {
+    "type": "Solve",
+    "named": false
+  },
+  {
     "type": "Sortclass",
+    "named": false
+  },
+  {
+    "type": "Structure",
+    "named": false
+  },
+  {
+    "type": "Tactic",
     "named": false
   },
   {
@@ -9989,6 +11044,10 @@
   },
   {
     "type": "_",
+    "named": false
+  },
+  {
+    "type": "`",
     "named": false
   },
   {
@@ -10198,6 +11257,10 @@
   {
     "type": "number",
     "named": true
+  },
+  {
+    "type": "of",
+    "named": false
   },
   {
     "type": "only",

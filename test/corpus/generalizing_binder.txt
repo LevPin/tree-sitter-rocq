@@ -1,0 +1,76 @@
+==================
+Generalizing Binder Braces
+==================
+Definition f `{Eq A} (x : A) := x.
+---
+
+(source_file
+  (sentence
+    (definition_command
+      (ident_decl
+        (ident))
+      (binder
+        (generalizing_binder
+          (typeclass_constraint
+            (type
+              (application
+                (ident)
+                (ident))))))
+      (binder
+        (ident)
+        (type
+          (ident)))
+      (ident))))
+
+==================
+Generalizing Binder Parens With Name
+==================
+Definition g `(Show A) (x : A) := x.
+---
+
+(source_file
+  (sentence
+    (definition_command
+      (ident_decl
+        (ident))
+      (binder
+        (generalizing_binder
+          (typeclass_constraint
+            (type
+              (application
+                (ident)
+                (ident))))))
+      (binder
+        (ident)
+        (type
+          (ident)))
+      (ident))))
+
+==================
+Generalizing Binder Several Constraints
+==================
+Definition h `[Eq A, Show A] (x : A) := x.
+---
+
+(source_file
+  (sentence
+    (definition_command
+      (ident_decl
+        (ident))
+      (binder
+        (generalizing_binder
+          (typeclass_constraint
+            (type
+              (application
+                (ident)
+                (ident))))
+          (typeclass_constraint
+            (type
+              (application
+                (ident)
+                (ident))))))
+      (binder
+        (ident)
+        (type
+          (ident)))
+      (ident))))
