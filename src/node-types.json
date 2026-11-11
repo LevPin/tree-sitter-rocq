@@ -4791,6 +4791,21 @@
     }
   },
   {
+    "type": "infix_command",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "notation_declaration",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "infix_pattern",
     "named": true,
     "fields": {},
@@ -9015,6 +9030,10 @@
           "named": true
         },
         {
+          "type": "infix_command",
+          "named": true
+        },
+        {
           "type": "instance_command",
           "named": true
         },
@@ -10637,6 +10656,10 @@
   },
   {
     "type": "Inductive",
+    "named": false
+  },
+  {
+    "type": "Infix",
     "named": false
   },
   {

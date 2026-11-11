@@ -563,6 +563,10 @@
         },
         {
           "type": "SYMBOL",
+          "name": "infix_command"
+        },
+        {
+          "type": "SYMBOL",
           "name": "proof_command"
         },
         {
@@ -3830,6 +3834,19 @@
         {
           "type": "STRING",
           "value": "Notation"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "notation_declaration"
+        }
+      ]
+    },
+    "infix_command": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "Infix"
         },
         {
           "type": "SYMBOL",

@@ -172,6 +172,7 @@ export default grammar({
         $.end_command,
         $.reserved_notation_command,
         $.notation_command,
+        $.infix_command,
 
         $.proof_command,
         $.qed_command,
@@ -618,6 +619,11 @@ export default grammar({
 
     notation_command: $ => seq(
       "Notation",
+      $.notation_declaration
+    ),
+
+    infix_command: $ => seq(
+      "Infix",
       $.notation_declaration
     ),
 

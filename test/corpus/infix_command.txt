@@ -1,0 +1,76 @@
+==================
+Infix With Modifiers And Scope
+==================
+Infix "++" := app (right associativity, at level 60) : list_scope.
+---
+
+(source_file
+  (sentence
+    (infix_command
+      (notation_declaration
+        (string)
+        (ident)
+        (syntax_modifier_list
+          (syntax_modifier
+            (associativity_modifier))
+          (syntax_modifier
+            (level_modifier
+              (at_level_num
+                (decnat)))))
+        (notation_scope
+          (ident))))))
+
+==================
+Infix With Level
+==================
+Infix "<$" := replace (at level 61, right associativity).
+---
+
+(source_file
+  (sentence
+    (infix_command
+      (notation_declaration
+        (string)
+        (ident)
+        (syntax_modifier_list
+          (syntax_modifier
+            (level_modifier
+              (at_level_num
+                (decnat))))
+          (syntax_modifier
+            (associativity_modifier)))))))
+
+==================
+Infix Plain
+==================
+Infix "<*>" := ap.
+---
+
+(source_file
+  (sentence
+    (infix_command
+      (notation_declaration
+        (string)
+        (ident)))))
+
+==================
+Infix With Local Attribute
+==================
+Local Infix "+++" := cat (at level 50) : my_scope.
+---
+
+(source_file
+  (sentence
+    (attributes
+      (legacy_attr))
+    (infix_command
+      (notation_declaration
+        (string)
+        (ident)
+        (syntax_modifier_list
+          (syntax_modifier
+            (level_modifier
+              (at_level_num
+                (decnat)))))
+        (notation_scope
+          (ident))))))
