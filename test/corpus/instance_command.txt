@@ -1,0 +1,326 @@
+==================
+Instance Record Body
+==================
+Instance showList (A : Type) (_ : Show A) : Show (list A) := {
+  show := fun l : list A => "[" ++ (showListAux show l) ++ "]"
+}.
+---
+
+(source_file
+  (sentence
+    (instance_command
+      (ident_decl
+        (ident))
+      (binder
+        (ident)
+        (type
+          (ident)))
+      (binder
+        (wildcard)
+        (type
+          (application
+            (ident)
+            (ident))))
+      (type
+        (application
+          (ident)
+          (parenthesized_term
+            (application
+              (ident)
+              (ident)))))
+      (record_body
+        (record_field
+          (ident)
+          (lambda_function
+            (open_binders
+              (binder
+                (ident))
+              (type
+                (application
+                  (ident)
+                  (ident))))
+            (app_operation
+              (string)
+              (app_operation
+                (parenthesized_term
+                  (application
+                    (application
+                      (ident)
+                      (ident))
+                    (ident)))
+                (string)))))))))
+
+==================
+Instance With Global Attribute
+==================
+#[global] Instance eqNat : Eq nat := { eqb := Nat.eqb }.
+---
+
+(source_file
+  (sentence
+    (attributes
+      (attribute
+        (ident)))
+    (instance_command
+      (ident_decl
+        (ident))
+      (type
+        (application
+          (ident)
+          (ident)))
+      (record_body
+        (record_field
+          (ident)
+          (dotted_qualid))))))
+
+==================
+Instance Field With Binders
+==================
+Instance functorList : Functor list := {
+  fmap A B := mapList
+}.
+---
+
+(source_file
+  (sentence
+    (instance_command
+      (ident_decl
+        (ident))
+      (type
+        (application
+          (ident)
+          (ident)))
+      (record_body
+        (record_field
+          (ident)
+          (binder
+            (ident))
+          (binder
+            (ident))
+          (ident))))))
+
+==================
+Instance Fields With Implicit Binders
+==================
+Instance monList : Monad list := {
+  ret {A : Type} := fun (x : A) => [x] ;
+  bind {A B : Type} := fun (l : list A) (f : A -> list B) => flatten (map f l)
+}.
+---
+
+(source_file
+  (sentence
+    (instance_command
+      (ident_decl
+        (ident))
+      (type
+        (application
+          (ident)
+          (ident)))
+      (record_body
+        (record_field
+          (ident)
+          (binder
+            (implicit_binders
+              (ident)
+              (type
+                (ident))))
+          (lambda_function
+            (open_binders
+              (binder
+                (ident)
+                (type
+                  (ident))))
+            (list_literal
+              (ident))))
+        (record_field
+          (ident)
+          (binder
+            (implicit_binders
+              (ident)
+              (ident)
+              (type
+                (ident))))
+          (lambda_function
+            (open_binders
+              (binder
+                (ident)
+                (type
+                  (application
+                    (ident)
+                    (ident))))
+              (binder
+                (ident)
+                (type
+                  (arrow_term
+                    (ident)
+                    (application
+                      (ident)
+                      (ident))))))
+            (application
+              (ident)
+              (parenthesized_term
+                (application
+                  (application
+                    (ident)
+                    (ident))
+                  (ident))))))))))
+
+==================
+Instance Term Body
+==================
+Instance showNat : Show nat := showNatImpl.
+---
+
+(source_file
+  (sentence
+    (instance_command
+      (ident_decl
+        (ident))
+      (type
+        (application
+          (ident)
+          (ident)))
+      (ident))))
+
+==================
+Instance Without Body
+==================
+Instance monResult : Monad Result.
+---
+
+(source_file
+  (sentence
+    (instance_command
+      (ident_decl
+        (ident))
+      (type
+        (application
+          (ident)
+          (ident))))))
+
+==================
+Instance Without Body Then Admitted
+==================
+Instance eqList {A : Type} (_ : Eq A) : Eq (list A)
+  (* REPLACE THIS LINE *). Admitted.
+---
+
+(source_file
+  (sentence
+    (instance_command
+      (ident_decl
+        (ident))
+      (binder
+        (implicit_binders
+          (ident)
+          (type
+            (ident))))
+      (binder
+        (wildcard)
+        (type
+          (application
+            (ident)
+            (ident))))
+      (type
+        (application
+          (ident)
+          (parenthesized_term
+            (application
+              (ident)
+              (ident))))))
+    (comment))
+  (sentence
+    (admitted_command)))
+
+==================
+Instance With Priority
+==================
+Instance foo : Bar nat | 10 := baz.
+---
+
+(source_file
+  (sentence
+    (instance_command
+      (ident_decl
+        (ident))
+      (type
+        (application
+          (ident)
+          (ident)))
+      (decnat)
+      (ident))))
+
+==================
+Instance Anonymous
+==================
+Instance : Show nat := { show := string_of_nat }.
+---
+
+(source_file
+  (sentence
+    (instance_command
+      (type
+        (application
+          (ident)
+          (ident)))
+      (record_body
+        (record_field
+          (ident)
+          (ident))))))
+
+==================
+Instance Anonymous With Binders
+==================
+Instance {A : Type} : Show (list A).
+---
+
+(source_file
+  (sentence
+    (instance_command
+      (implicit_binders
+        (ident)
+        (type
+          (ident)))
+      (type
+        (application
+          (ident)
+          (parenthesized_term
+            (application
+              (ident)
+              (ident))))))))
+
+==================
+Existing Instance
+==================
+Existing Instance showNat.
+---
+
+(source_file
+  (sentence
+    (existing_instance_command
+      (ident))))
+
+==================
+Existing Instances With Priority
+==================
+Existing Instances showNat eqNat | 5.
+---
+
+(source_file
+  (sentence
+    (existing_instance_command
+      (ident)
+      (ident)
+      (decnat))))
+
+==================
+Existing Class
+==================
+Existing Class Show.
+---
+
+(source_file
+  (sentence
+    (existing_instance_command
+      (ident))))

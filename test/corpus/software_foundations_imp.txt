@@ -21,9 +21,10 @@ Check [| Y := 2 |].
         (number))))
   (sentence
     (evaluation_command
-      (custom_notation_block
-        (ident)
-        (number))))
+      (record_term
+        (record_field
+          name: (ident)
+          body: (number)))))
   (sentence
     (evaluation_command
       (custom_notation_block

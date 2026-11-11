@@ -163,6 +163,8 @@ export default grammar({
         $.inductive_command,
         $.record_command,
         $.class_command,
+        $.instance_command,
+        $.existing_instance_command,
         $.assumption_command,
         $.arguments_command,
         $.section_command,
@@ -506,6 +508,46 @@ export default grammar({
       )
     ),
 
+    // Wins over `custom_notation_block` on the empty `{| |}`
+    record_term: $ => prec(1, seq(
+      "{|",
+      optional(seq(
+        $._record_term_field,
+        repeat(seq(";", $._record_term_field)),
+        optional(";")
+      )),
+      "|}"
+    )),
+
+    // No binders here: after the name, `[`, `(` and `{` would clash with `custom_notation_block`
+    _record_term_field: $ => alias($._record_term_def, $.record_field),
+
+    _record_term_def: $ => seq(
+      field("name", $._qualid), ":=", field("body", $._term)
+    ),
+
+    instance_command: $ => seq(
+      "Instance",
+      optional(choice(
+        seq($.ident_decl, repeat($.binder)),
+        seq($._bracketed_binder, repeat($.binder))
+      )),
+      ":",
+      $.type,
+      optional(seq("|", optional($._natural))),
+      optional(seq(":=", field("body", choice($.record_body, $._term))))
+    ),
+
+    existing_instance_command: $ => choice(
+      seq(
+        "Existing",
+        choice("Instance", "Instances"),
+        repeat1(field("name", $._qualid)),
+        optional(seq("|", $._natural))
+      ),
+      seq("Existing", "Class", field("name", $._qualid))
+    ),
+
     assumption_command: $ => seq(
       choice(
         "Axiom", "Axioms",
@@ -803,6 +845,7 @@ export default grammar({
 
         // Custom
         $.list_literal,
+        $.record_term,
         $.recursive_notation_term,
         $.custom_notation_block,
       ),
