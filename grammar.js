@@ -175,6 +175,7 @@ export default grammar({
         $.infix_command,
 
         $.proof_command,
+        $.obligation_command,
         $.qed_command,
         $.save_command,
         $.defined_command,
@@ -746,6 +747,32 @@ export default grammar({
         )
       )
     ),
+
+    obligation_command: $ => choice(
+      seq(
+        "Next", "Obligation",
+        optional($._obligation_of),
+        optional($._obligation_with)
+      ),
+      seq(
+        "Obligation", $._natural,
+        optional($._obligation_of),
+        optional($._obligation_with)
+      ),
+      seq("Obligation", "Tactic", ":=", $._ltac_expr),
+      seq(
+        "Solve", "Obligations",
+        optional($._obligation_of),
+        optional($._obligation_with)
+      ),
+      seq("Solve", "All", "Obligations", optional($._obligation_with)),
+      seq("Obligations", optional($._obligation_of)),
+      seq("Preterm", optional($._obligation_of))
+    ),
+
+    _obligation_of: $ => seq("of", field("name", $.ident)),
+
+    _obligation_with: $ => seq("with", field("tactic", $._ltac_expr)),
 
     section_var_expr: $ => choice(
       seq($.expr_leaf, repeat1($.expr_leaf)),

@@ -7435,6 +7435,90 @@
     }
   },
   {
+    "type": "obligation_command",
+    "named": true,
+    "fields": {
+      "name": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "ident",
+            "named": true
+          }
+        ]
+      },
+      "tactic": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "match_goal",
+            "named": true
+          },
+          {
+            "type": "parenthesized_tactic",
+            "named": true
+          },
+          {
+            "type": "tactic_branch",
+            "named": true
+          },
+          {
+            "type": "tactic_invocation",
+            "named": true
+          },
+          {
+            "type": "tactic_or",
+            "named": true
+          },
+          {
+            "type": "tactic_sequence",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "decnat",
+          "named": true
+        },
+        {
+          "type": "hexnat",
+          "named": true
+        },
+        {
+          "type": "match_goal",
+          "named": true
+        },
+        {
+          "type": "parenthesized_tactic",
+          "named": true
+        },
+        {
+          "type": "tactic_branch",
+          "named": true
+        },
+        {
+          "type": "tactic_invocation",
+          "named": true
+        },
+        {
+          "type": "tactic_or",
+          "named": true
+        },
+        {
+          "type": "tactic_sequence",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "of_type",
     "named": true,
     "fields": {},
@@ -9051,6 +9135,10 @@
         },
         {
           "type": "notation_command",
+          "named": true
+        },
+        {
+          "type": "obligation_command",
           "named": true
         },
         {
@@ -10719,6 +10807,10 @@
     "named": false
   },
   {
+    "type": "Next",
+    "named": false
+  },
+  {
     "type": "NoInline",
     "named": false
   },
@@ -10732,6 +10824,14 @@
   },
   {
     "type": "OCaml",
+    "named": false
+  },
+  {
+    "type": "Obligation",
+    "named": false
+  },
+  {
+    "type": "Obligations",
     "named": false
   },
   {
@@ -10760,6 +10860,10 @@
   },
   {
     "type": "Polymorphic",
+    "named": false
+  },
+  {
+    "type": "Preterm",
     "named": false
   },
   {
@@ -10855,11 +10959,19 @@
     "named": false
   },
   {
+    "type": "Solve",
+    "named": false
+  },
+  {
     "type": "Sortclass",
     "named": false
   },
   {
     "type": "Structure",
+    "named": false
+  },
+  {
+    "type": "Tactic",
     "named": false
   },
   {
@@ -11141,6 +11253,10 @@
   {
     "type": "number",
     "named": true
+  },
+  {
+    "type": "of",
+    "named": false
   },
   {
     "type": "only",
