@@ -394,7 +394,7 @@ export default grammar({
     ),
 
     fixpoint_command: $ => seq(
-      "Fixpoint",
+      choice("Fixpoint", "Function"),
       $._fix_definition,
       repeat(seq("with", $._fix_definition)),
     ),

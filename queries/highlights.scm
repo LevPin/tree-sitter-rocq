@@ -68,7 +68,7 @@
 
 [
   "Theorem" "Lemma" "Fact" "Remark" "Corollary" "Proposition" "Property"
-  "Definition" "Example" "Fixpoint"
+  "Definition" "Example" "Fixpoint" "Function"
   "Axiom" "Axioms" "Conjecture" "Conjectures" "Parameter" "Parameters"
   "Hypothesis" "Hypotheses" "Variable" "Variables"
 ] @keyword.declaration

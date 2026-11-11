@@ -9696,6 +9696,10 @@
     "named": false
   },
   {
+    "type": "Function",
+    "named": false
+  },
+  {
     "type": "Global",
     "named": false
   },

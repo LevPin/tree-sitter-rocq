@@ -246,3 +246,67 @@ Fixpoint div_explicit (n m : nat) {measure n m lt} : nat := n.
       (type
         (ident))
       body: (ident))))
+
+================================================================================
+Function Declaration with Measure and Struct
+================================================================================
+
+Function digits (n : nat) (acc : string)
+  {measure (fun x : nat => x) n} :=
+  let acc' := f (n mod 16) ++ acc in acc'.
+
+Function plus1 (n : nat) {struct n} : nat := S n.
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (sentence
+    (fixpoint_command
+      (ident_decl
+        (ident))
+      (binder
+        (ident)
+        (type
+          (ident)))
+      (binder
+        (ident)
+        (type
+          (ident)))
+      (fixannot
+        (parenthesized_term
+          (lambda_function
+            (open_binders
+              (binder
+                (ident))
+              (type
+                (ident)))
+            (ident)))
+        (ident))
+      (let_expression
+        (ident)
+        (app_operation
+          (application
+            (ident)
+            (parenthesized_term
+              (application
+                (application
+                  (ident)
+                  (ident))
+                (number))))
+          (ident))
+        (ident))))
+  (sentence
+    (fixpoint_command
+      (ident_decl
+        (ident))
+      (binder
+        (ident)
+        (type
+          (ident)))
+      (fixannot
+        (ident))
+      (type
+        (ident))
+      (application
+        (ident)
+        (ident)))))
