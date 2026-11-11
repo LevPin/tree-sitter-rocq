@@ -20,7 +20,7 @@ export default grammar({
   conflicts: $ => [
     [$.generic_tactic_body],
     [$.match_pattern, $.list_literal],
-    [$.binder],
+    [$._bracketed_binder],
 
     [$.fixannot, $._qualid],
     [$.assert_tactic, $._qualid],
@@ -161,6 +161,8 @@ export default grammar({
         $.definition_command,
         $.fixpoint_command,
         $.inductive_command,
+        $.record_command,
+        $.class_command,
         $.assumption_command,
         $.arguments_command,
         $.section_command,
@@ -460,6 +462,49 @@ export default grammar({
         $.attribute,
         repeat(seq(",", $.attribute)),
         "]"),
+
+    record_command: $ => seq(
+      choice("Record", "Structure"),
+      field("name", $.ident),
+      repeat($.binder),
+      optional(seq(":", $.type)),
+      ":=",
+      optional(field("constructor", $.ident)),
+      $.record_body
+    ),
+
+    class_command: $ => seq(
+      "Class",
+      field("name", $.ident),
+      repeat($.binder),
+      optional(seq(":", $.type)),
+      ":=",
+      choice(
+        seq(optional(field("constructor", $.ident)), $.record_body),
+        seq(field("constructor", $.ident), $.of_type)
+      )
+    ),
+
+    record_body: $ => seq(
+      "{",
+      optional($._record_fields),
+      "}"
+    ),
+
+    _record_fields: $ => seq(
+      $.record_field,
+      repeat(seq(";", $.record_field)),
+      optional(";")
+    ),
+
+    record_field: $ => seq(
+      field("name", $._qualid),
+      repeat($.binder),
+      choice(
+        seq($.of_type, optional(seq(":=", field("body", $._term)))),
+        seq(":=", field("body", $._term))
+      )
+    ),
 
     assumption_command: $ => seq(
       choice(
@@ -1111,9 +1156,14 @@ export default grammar({
 
     binder: $ => choice(
       $._name,
+      $._bracketed_binder
+    ),
+
+    _bracketed_binder: $ => choice(
       seq("(", repeat($._name), ":", $.type, ")"),
       seq("(", $._name, optional(seq(":", $.type)), ":=", $._term, ")"),
       $.implicit_binders,
+      $.generalizing_binder,
       seq("(", $._name, ":", $.type, "|", $._term, ")"),
       seq($.destructuring_pattern),
     ),
@@ -1122,6 +1172,22 @@ export default grammar({
       seq("{", repeat1($._name), optional(seq(":", $.type)), "}"),
       seq("[", repeat1($._name), optional(seq(":", $.type)), "]")
     ),
+
+    generalizing_binder: $ => seq(
+      "`",
+      choice(
+        seq("(", $._typeclass_constraints, ")"),
+        seq("{", $._typeclass_constraints, "}"),
+        seq("[", $._typeclass_constraints, "]")
+      )
+    ),
+
+    _typeclass_constraints: $ => seq(
+      $.typeclass_constraint,
+      repeat(seq(",", $.typeclass_constraint))
+    ),
+
+    typeclass_constraint: $ => seq(optional("!"), $.type),
 
     open_binders: $ => seq(
       repeat1($.binder),
