@@ -28,7 +28,7 @@
  "parsing" "printing" "format" "scope" "at" "ident"
  "name" "global" "bigint" "strict" "pattern" "binder"
  "closed" "constr" "as" "level" "next"
- "by" "using" "eqn"
+ "by" "using" "eqn" "of"
 ] @keyword.modifier
 
 [
@@ -71,6 +71,7 @@
   "Definition" "Example" "Fixpoint"
   "Axiom" "Axioms" "Conjecture" "Conjectures" "Parameter" "Parameters"
   "Hypothesis" "Hypotheses" "Variable" "Variables"
+  "Record" "Structure" "Class" "Instance" "Instances" "Existing"
 ] @keyword.declaration
 
 [ "Inductive" ] @keyword.declaration.inductive
@@ -80,12 +81,13 @@
 ] @keyword.module
 
 [
- "Reserved" "Notation"
+ "Reserved" "Notation" "Infix"
 ] @keyword.notation
 
 [
  "with" "struct" "wf" "measure" "where" "and"
  "Proof" "Save" "Defined"
+ "Next" "Obligation" "Obligations" "Solve" "Preterm" "Tactic"
  "All"
  "fun" "forall" "exists"
  "let" "match" "return" "end"
@@ -160,6 +162,11 @@
 (ident_decl) @function
 (assumpt (ident_decl) @variable.parameter)
 (inductive_definition name: (_) @type.definition)
+(record_command name: (_) @type.definition)
+(class_command name: (_) @type.definition)
+(class_command constructor: (_) @constructor)
+(record_command constructor: (_) @constructor)
+(existing_instance_command name: (_) @variable)
 (constructor name: (_) @constructor)
 
 (section_command (ident) @module.name)
